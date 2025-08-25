@@ -81,7 +81,4 @@
 
 ## Conclusiones
 
-- **STM32F4:** _Es bastante utilizado para robótica y control en tiempo real. Sus timers facilitan el control de servos. Su FPU es útil para calcular trayectorias._  
-- **ESP32:** _Muy balanceado en costo y prestaciones, ideal para proyectos con conectividad._  
-- **Teensy 4.1:** _El más rápido, pero más caro y menos difundido._  
-- **Arduino Mega:** _Sencillo y versátil para proyectos educativos, pero limitado en potencia._  
+- **STM32F4:** _Es bastante utilizado para robotica y control en tiempo real. Tiene timers que facilitan el control de servos. Su arquitectura de FPU es util para calcular trayectorias.El precio es un poco elevado pero aun accesible. Es comunmente utilizado para drones por lo que tiene un buen tiempo de reacción. En conclusión parece ser la opción mas apta para este proyecto_
