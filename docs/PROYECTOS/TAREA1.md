@@ -11,7 +11,7 @@
 - **Equipo / Autor(es):** _Sumie Arai_  
 - **Curso / Asignatura:** _Sistemas Embebidos 1_  
 - **Fecha:** _25/06/2025_  
-- **Descripción breve:** _Se realiza una breve investigación y comparacion de 4 microcontroladores que se planean utilizar para un proyecto hipotetico en el que se construira un robot automata que sepa bailar balse _
+- **Descripción breve:** _Se realiza una breve investigación y comparación de 4 microcontroladores que se planean utilizar para un proyecto hipotético en el que se construirá un robot autómata que sepa bailar vals._  
 
 !!! tip "Consejo"
     Mantén este resumen corto (máx. 5 líneas). Lo demás va en secciones específicas.
@@ -20,55 +20,33 @@
 
 ## 2) Objetivos
 
-- **General:** _Tene un conocimiento mas amplio sobre los distintos y¿microcontroladores y sus características individuales y ventajas para futuros proyectos._
+- **General:** _Tener un conocimiento más amplio sobre los distintos microcontroladores y sus características individuales y ventajas para futuros proyectos._  
 - **Específicos:**
-  - _Familiarizarse con las herramientas gratuitas que github ofrece como esta página_
-  - _OE2…_
-  - _OE3…_
+  - _Familiarizarse con las herramientas gratuitas que GitHub ofrece, como esta página._
+  - _Adquirir un mejor entendimiento sobre los componentes de un microcontrolador._
+  
+---
 
-## 3) Alcance y Exclusiones
-
-- **Incluye:** _Qué funcionalidades/entregables sí están en el proyecto._
-- **No incluye:** _Qué queda fuera para evitar malentendidos._
+# MICROCONTROLADORES
 
 ---
 
-## 4) Requisitos
+## 1) Arduino Mega (ATmega2560)
 
-**Software**
-- _SO compatible (Windows/Linux/macOS)_
-- _Python 3.x / Node 18+ / Arduino IDE / etc._
-- _Dependencias (p. ej., pip/requirements, npm packages)_
-
-**Hardware (si aplica)**
-- _MCU / Sensores / Actuadores / Fuente de poder_
-- _Herramientas (multímetro, cautín, etc.)_
-
-**Conocimientos previos**
-- _Programación básica en X_
-- _Electrónica básica_
-- _Git/GitHub_
+- **Pines / Periféricos:** _54 GPIO, 16 entradas analógicas, UART, SPI, I²C_  
+- **Memoria:** _256 KB Flash, 8 KB SRAM_  
+- **Ecosistema / Lenguaje:** _Arduino IDE (C/C++)_  
+- **Costos:** _$20-30 USD aprox._  
+- **Arquitectura:** _AVR 8-bit_  
+- **Velocidad:** _16 MHz_  
+- **Descripción breve:** _Muchos pines para servos o sensores. Muy usado en robótica educativa, fácil de programar, pero limitado en velocidad._  
 
 ---
 
-## 5) Instalación
+## 2) ESP32
 
-```bash
-# 1) Clonar
-git clone https://github.com/<usuario>/<repo>.git
-cd <repo>
-
-# 2) (Opcional) Crear entorno virtual
-python -m venv .venv
-# macOS/Linux
-source .venv/bin/activate
-# Windows (PowerShell)
-.venv\Scripts\Activate.ps1
-
-# 3) Instalar dependencias (ejemplos)
-pip install -r requirements.txt
-# o, si es Node:
-npm install
-
-
-```
+- **Pines / Periféricos:** _34 GPIO, ADC, PWM, UART, SPI, I²C, Wi-Fi, BT_  
+- **Memoria:** _4 MB Flash, 520 KB SRAM_  
+- **Ecosistema / Lenguaje:** _Arduino IDE, ESP-IDF, MicroPython_  
+- **Costos:** _$5-10 USD aprox._  
+- **Arquitectura:** _Xtensa_
