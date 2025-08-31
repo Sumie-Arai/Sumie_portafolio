@@ -1,4 +1,4 @@
-# 📚 Sumie Arai Erazo
+#  Sumie Arai Erazo
 
 > Plantilla genérica para documentar proyectos académicos o de ingeniería.  
 > Copia y adapta las secciones según tu necesidad.
