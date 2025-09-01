@@ -42,7 +42,7 @@
 
 ## 5) Códigos
 
-# Compuerta AND
+### Compuerta AND
 
 ```bash
 # 1) Clonar
@@ -63,7 +63,12 @@ npm install
 
 
 ```
-# Compuerta OR
-# Compuerta XOR
+### Compuerta OR
+### Compuerta XOR
 
 ## 6) Esquemático
+
+![Diagrama del sistema](recursos/imgs/ESQtarea3)
+
+<!-- Control de tamaño usando HTML (cuando se requiera) -->
+<img src="../recursos/imgs/ibero.jpeg" alt="Diagrama del sistema" width="420">
