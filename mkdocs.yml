@@ -1,4 +1,6 @@
 site_name: Sumie Arai Erazo Portafolio
+sitre_url: https://sumiearai.github.io/Sumie_portafolio/
+
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
