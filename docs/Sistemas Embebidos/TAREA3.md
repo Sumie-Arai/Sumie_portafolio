@@ -66,9 +66,12 @@ npm install
 ### Compuerta OR
 ### Compuerta XOR
 
+---
 ## 6) Esquemático
 
-![Diagrama del sistema](recursos/imgs/ESQtarea3)
+![esquematico 1](recursos/imgs/ESQtarea3.png)
 
 <!-- Control de tamaño usando HTML (cuando se requiera) -->
-<img src="../recursos/imgs/ibero.jpeg" alt="Diagrama del sistema" width="420">
+<img src="../recursos/imgs/ESQtarea3.png" alt="Diagrama del sistema" width="420">
+
+## 7) Video
