@@ -1,30 +1,22 @@
 # 📚 TAREA 2
 
-> Plantilla genérica para documentar proyectos académicos o de ingeniería.  
-> Copia y adapta las secciones según tu necesidad.
-
----
-
 ## 1) Resumen
 
-- **Nombre del proyecto:** _Mi Proyecto_  
-- **Equipo / Autor(es):** _Nombre(s)_  
-- **Curso / Asignatura:** _Nombre del curso_  
-- **Fecha:** _DD/MM/AAAA_  
-- **Descripción breve:** _Una o dos líneas que expliquen qué hace y por qué._
-
-!!! tip "Consejo"
-    Mantén este resumen corto (máx. 5 líneas). Lo demás va en secciones específicas.
+- **Nombre del proyecto:** _Outputs básicos_  
+- **Equipo / Autor(es):** Juan David García Cortéz, Sumie Arai Erazzo, Carlos Gutierrez Martinez, Máximo Nájera Medina _  
+- **Curso / Asignatura:** _Sistemas Embebidos 1_  
+- **Fecha:** _08/27/2025_  
+- **Descripción breve:** _Se realizó un conjunto de codigo para raspberry pico 1 con las librerias "pico/stdlib.h" y "hardware/structs/sio.h"._
 
 ---
 
 ## 2) Objetivos
 
-- **General:** _Qué se pretende lograr en términos amplios._
+- **General:** _Aprender a usar mascaras y comandos de las llibrerias vistas _
 - **Específicos:**
-  - _OE1…_
-  - _OE2…_
-  - _OE3…_
+  - _Crear un contador de 4 bits_
+  - _Correr un “1” por cinco LEDs P0..P3 y regresar (0→1→2→3→2→1)_
+  - _Secuencia en codigo Gray_
 
 ## 3) Alcance y Exclusiones
 

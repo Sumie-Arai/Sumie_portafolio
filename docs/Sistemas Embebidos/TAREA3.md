@@ -42,36 +42,114 @@
 
 ## 5) Códigos
 
-### Compuerta AND
+### Compuerta AND, OR y XOR
 
 ```bash
-# 1) Clonar
-git clone https://github.com/<usuario>/<repo>.git
-cd <repo>
+#include "pico/stdlib.h" // Para usar las funciones de GPIO
+// #include "hardware/gpio.h"        // Para usar las funciones de GPIO
 
-# 2) (Opcional) Crear entorno virtual
-python -m venv .venv
-# macOS/Linux
-source .venv/bin/activate
-# Windows (PowerShell)
-.venv\Scripts\Activate.ps1
+#define BotonX 4
+#define BotonY 5
+#define LedX 6
+#define LedY 7
+#define LedZ_AND 8
+#define LedZ_OR 9
+#define LedZ_XOR 10
 
-# 3) Instalar dependencias (ejemplos)
-pip install -r requirements.txt
-# o, si es Node:
-npm install
+int main()
+{
+    const uint32_t Mascara = (1u << BotonX | 1u << BotonY | 1u << LedX | 1u << LedY | 1u << LedZ_AND | 1u << LedZ_OR | 1u << LedZ_XOR);
 
+    gpio_init_mask(Mascara);                                                                                                                 // Inicializa los pines
+    gpio_set_dir_masked(Mascara, (0u << BotonX | 0u << BotonY | 1u << LedX | 1u << LedY | 1u << LedZ_AND | 1u << LedZ_OR | 1u << LedZ_XOR)); // Configura los pines como salida
+    gpio_pull_up(BotonX);                                                                                                                    // Activa la resistencia pull-up interna del pin 4
+    gpio_pull_up(BotonY);
+
+    while (true)
+    {
+        int Entrada_X = !gpio_get(BotonX);
+        int Entrada_Y = !gpio_get(BotonY);
+        int Salida_AND, Salida_OR, Salida_XOR;
+
+        Salida_AND = Entrada_X & Entrada_Y; // Pin 8 = Pin 4 AND Pin 5
+        Salida_OR = Entrada_X | Entrada_Y;  // Pin 9 = Pin 4 OR Pin 5
+        Salida_XOR = Entrada_X ^ Entrada_Y; // Pin 10 = Pin 4 XOR Pin 5
+
+        gpio_put_masked(Mascara, (1 << 11) | (Entrada_X << LedX) | (Entrada_Y << LedY) | (Salida_AND << LedZ_AND) | (Salida_OR << LedZ_OR) | (Salida_XOR << LedZ_XOR));
+        sleep_ms(100); // Pausa de 100 ms
+    }
+}
 
 ```
-### Compuerta OR
-### Compuerta XOR
 
----
+### Secuencia LEDs
+
+```bash
+#include "pico/stdlib.h" // Para usar las funciones de GPIO
+// #include "hardware/gpio.h"        // Para usar las funciones de GPIO
+
+#define BotonX 4
+#define BotonY 5
+#define LedX 6
+#define LedY 7
+#define LedZ_AND 8
+#define LedZ_OR 9
+#define LedZ_XOR 10
+
+int main()
+{
+    const uint32_t Mascara = (1u << BotonX | 1u << BotonY | 1u << LedX | 1u << LedY | 1u << LedZ_AND | 1u << LedZ_OR | 1u << LedZ_XOR);
+
+    gpio_init_mask(Mascara);                                                                                                                 // Inicializa los pines
+    gpio_set_dir_masked(Mascara, (0u << BotonX | 0u << BotonY | 1u << LedX | 1u << LedY | 1u << LedZ_AND | 1u << LedZ_OR | 1u << LedZ_XOR)); // Configura los pines como salida
+    gpio_pull_up(BotonX);                                                                                                                    // Activa la resistencia pull-up interna del pin 4
+    gpio_pull_up(BotonY);
+
+    int posicion = 6;
+    bool presionado = false;
+
+    while (true)
+    {
+        int Boton_Izq = !gpio_get(BotonX);
+        int Boton_Der = !gpio_get(BotonY);
+
+        if (Boton_Izq == 1 && presionado == false)
+        {
+            presionado = true;
+            if (posicion == 6)
+                posicion = 11;
+            posicion--;
+        }
+        if (Boton_Der == 1 && presionado == false)
+        {
+            presionado = true;
+            if (posicion == 10)
+                posicion = 5;
+            posicion++;
+        }
+        if (Boton_Izq == 0 && Boton_Der == 0)
+            presionado = false;
+        gpio_put_masked(Mascara, (1u << posicion)); // Enciende el LED en la posición actual
+        sleep_ms(10);                              // Pausa de 100 ms
+    }
+}
+
+```
+
+
+
 ## 6) Esquemático
 
 ![esquematico 1](recursos/imgs/ESQtarea3.png)
 
-<!-- Control de tamaño usando HTML (cuando se requiera) -->
-<img src="../recursos/imgs/ESQtarea3.png" alt="Diagrama del sistema" width="420">
+<!-- Control de tamaño usando HTML -->
+<img src="recursos/imgs/ESQtarea3.png" alt="Diagrama del sistema" width="420">
 
 ## 7) Video
+
+En las siguientes ligas se encuentran los videos de los codigos compilados:
+
+[Compuertas AND, OR y XOR](https://youtube.com/shorts/qnn4jXtUNFQ?feature=share)
+[Secuencia de leds adelante y atrás](https://youtube.com/shorts/5GKeFAy4P7I?feature=share)
+
+
