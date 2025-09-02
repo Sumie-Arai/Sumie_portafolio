@@ -94,10 +94,13 @@ int main()
 ## 7) Video
 
 
-<iframe width="560" height="315" 
-        src="https://youtube.com/shorts/daY4RG9xRPI?feature=share" 
-        title="Barrido LEDs" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
+<!-- Pega esto en tu .md -->
+<iframe
+  width="315"
+  height="560"
+  src="https://www.youtube-nocookie.com/embed/daY4RG9xRPI?rel=0&modestbranding=1"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
 </iframe>
