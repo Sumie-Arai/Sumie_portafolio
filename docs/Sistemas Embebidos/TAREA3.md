@@ -143,7 +143,7 @@ int main()
 ![esquematico 1](recursos/imgs/ESQtarea3.png)
 
 <!-- Control de tamaño usando HTML -->
-<img src="recursos/imgs/ESQtarea3.png" alt="Diagrama del sistema" width="420">
+<img src="recursosC:\Users\sumie\OneDrive\Desktop\proyectos\Sumie_portafolio\docs\recursos\imgs\ESQtarea3.png" alt="esquematico 1" width="420">
 
 
 
