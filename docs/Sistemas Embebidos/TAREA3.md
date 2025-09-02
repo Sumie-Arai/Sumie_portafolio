@@ -140,10 +140,10 @@ int main()
 
 ## 6) Esquemático
 
-![esquematico 1](recursos/imgs/ESQtarea3.png)
+
 
 <!-- Control de tamaño usando HTML -->
-<img src="recursosC:\Users\sumie\OneDrive\Desktop\proyectos\Sumie_portafolio\docs\recursos\imgs\ESQtarea3.png" alt="esquematico 1" width="420">
+<img src="recursos\imgs\ESQtarea3.jpg" alt="esquematico 1" width="420">
 
 
 

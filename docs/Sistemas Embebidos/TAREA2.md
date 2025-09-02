@@ -1,27 +1,28 @@
-# 📚 TAREA 2
-
-## 1) Resumen
-
-- **Nombre del proyecto:** _Outputs básicos_  
-- **Equipo / Autor(es):** Juan David García Cortéz, Sumie Arai Erazzo, Carlos Gutierrez Martinez, Máximo Nájera Medina _  
-- **Curso / Asignatura:** _Sistemas Embebidos 1_  
-- **Fecha:** _08/27/2025_  
-- **Descripción breve:** _Se realizó un conjunto de codigo para raspberry pico 1 con las librerias "pico/stdlib.h" y "hardware/structs/sio.h"._
+# 📚 TAREA 3
 
 ---
 
+## 1) Resumen
+
+- **Nombre del proyecto:** _Outputs Básicos_  
+- **Equipo / Autor(es):** _Juan David García Cortéz y Sumie Arai Erazo_  
+- **Curso / Asignatura:** _Sistemas embebidos 1_  
+- **Fecha:** _7/31/25_  
+- **Descripción breve:** _En esta practica se formuñó un código simple que mande una señal de high para prender 5 LEDs uno por uno de forma que se vea un patrón de rebote de encendido en la tira de LEDs._
+
+
+
 ## 2) Objetivos
 
-- **General:** _Aprender a usar mascaras y comandos de las llibrerias vistas _
+- **General:** _Crear codigos que contengan imputs y outputs_
 - **Específicos:**
-  - _Crear un contador de 4 bits_
-  - _Correr un “1” por cinco LEDs P0..P3 y regresar (0→1→2→3→2→1)_
-  - _Secuencia en codigo Gray_
+  - _Aprender a prender pines de pi pico con C SDK_
+  - _Documentar progreso en página de GitHub_
 
 ## 3) Alcance y Exclusiones
 
-- **Incluye:** _Qué funcionalidades/entregables sí están en el proyecto._
-- **No incluye:** _Qué queda fuera para evitar malentendidos._
+- **Incluye:** _5 LEDs, 2 botones, un pi pico 2, programa en C SDK._
+- **No incluye:** _Resistencias :b._
 
 ---
 
@@ -29,38 +30,74 @@
 
 **Software**
 - _SO compatible (Windows/Linux/macOS)_
-- _Python 3.x / Node 18+ / Arduino IDE / etc._
-- _Dependencias (p. ej., pip/requirements, npm packages)_
-
-**Hardware (si aplica)**
-- _MCU / Sensores / Actuadores / Fuente de poder_
-- _Herramientas (multímetro, cautín, etc.)_
+- _Python 3.x / visual studio / raspberry pi pico._
+- _"pico/stdlib.h", "hardware/structs/sio.h"_
 
 **Conocimientos previos**
-- _Programación básica en X_
+- _Programación básica en C_
 - _Electrónica básica_
 - _Git/GitHub_
 
 ---
 
-## 5) Instalación
+## 5) Códigos
 
 ```bash
-# 1) Clonar
-git clone https://github.com/<usuario>/<repo>.git
-cd <repo>
+#include "pico/stdlib.h" // Para usar las funciones de GPIO
+#include "hardware/gpio.h"        // Para usar las funciones de GPIO
 
-# 2) (Opcional) Crear entorno virtual
-python -m venv .venv
-# macOS/Linux
-source .venv/bin/activate
-# Windows (PowerShell)
-.venv\Scripts\Activate.ps1
 
-# 3) Instalar dependencias (ejemplos)
-pip install -r requirements.txt
-# o, si es Node:
-npm install
+#define P1 4 // BOTÓN de Jugador 1
+#define P2 5 // BOTÓN de Jugador 2
+#define Led1 6
+#define Led2 7
+#define Led3 8
+#define Led4 9
+#define Led5 10
+
+
+int main()
+{
+    const uint32_t Mascara = (1u << Led1 | 1u << Led2 | 1u << Led3 | 1u << Led4 | 1u << Led5);
+
+    gpio_init_mask(Mascara);                                                                                                                 // Inicializa los pines
+    gpio_set_dir_masked(Mascara, (1u << Led1 | 1u << Led2 | 1u << Led3 | 1u << Led4 | 1u << Led5)); // Configura los pines como salida
+    
+
+    int posicion = 6;
+
+    int direccion = 1; // 1 para derecha, -1 para izquierda
+
+    while (true)
+    {
+        gpio_put_masked(Mascara, (1u << posicion)); // Enciende el LED en la posición actual
+        sleep_ms(200);                             // Pausa de 200 ms
+
+        posicion += direccion; // Actualiza la posición
+        if (posicion == Led5) direccion = -1;
+        else if (posicion == Led1) direccion = 1;
+
+    }
+}
 
 
 ```
+
+
+
+## 6) Esquemático
+
+
+<img src="recursos\imgs\ESQtarea3.jpg" alt="esquematico 1" width="420">
+
+
+## 7) Video
+
+
+<iframe width="560" height="315" 
+        src="https://youtube.com/shorts/daY4RG9xRPI?feature=share" 
+        title="Barrido LEDs" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+</iframe>
