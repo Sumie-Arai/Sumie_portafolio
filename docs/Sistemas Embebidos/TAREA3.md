@@ -145,11 +145,27 @@ int main()
 <!-- Control de tamaño usando HTML -->
 <img src="recursos/imgs/ESQtarea3.png" alt="Diagrama del sistema" width="420">
 
+
+
 ## 7) Video
 
-En las siguientes ligas se encuentran los videos de los codigos compilados:
+### Compuertas AND, OR y XOR
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/qnn4jXtUNFQ" 
+        title="Compuertas AND, OR y XOR" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+</iframe>
 
-[Compuertas AND, OR y XOR](https://youtube.com/shorts/qnn4jXtUNFQ?feature=share)
-[Secuencia de leds adelante y atrás](https://youtube.com/shorts/5GKeFAy4P7I?feature=share)
+### Secuencia de LEDs adelante y atrás
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/5GKeFAy4P7I" 
+        title="Secuencia de LEDs" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+</iframe>
+
 
 
