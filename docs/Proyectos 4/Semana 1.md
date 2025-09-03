@@ -5,6 +5,6 @@
 
 ---
 
-<object data="../recursos/archivos/Calendario.pdf" type="application/pdf" width="100%" height="600">
-  <p>No se pudo mostrar el PDF. 
+<object data="/recursos/archivos/Calendario.pdf" type="application/pdf" width="100%" height="600">
+  <p>No se pudo mostrar el PDF.
 </object>
