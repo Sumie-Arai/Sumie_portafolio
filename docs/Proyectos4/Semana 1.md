@@ -4,11 +4,11 @@
 > Copia y adapta las secciones según tu necesidad.
 
 ---
-<object data="Proyectos_4/recursos/archivos/SyllabusProyecto.pdf" 
+<object data="../recursos/archivos/SyllabusProyecto.pdf" 
         type="application/pdf" 
         width="100%" 
         height="600">
   <p>No se pudo mostrar el PDF. 
-     <a href="Proyectos_4/recursos/archivos/SyllabusProyecto.pdf">Descargar</a>
+     <a href="../recursos/archivos/SyllabusProyecto.pdf">Descargar</a>
   </p>
 </object>
