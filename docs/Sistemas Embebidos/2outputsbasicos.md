@@ -88,7 +88,7 @@ int main()
 ## 6) Esquemático
 
 
-<img src="recursos\imgs\ESQtarea3.jpg" alt="esquematico 1" width="420">
+<img src="..\recursos\imgs\ESQtarea3.jpg" alt="esquematico 1" width="420">
 
 
 ## 7) Video
