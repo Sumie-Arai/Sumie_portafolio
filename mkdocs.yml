@@ -1,5 +1,7 @@
 site_name: Sumie Arai Erazo Portafolio
-sitre_url: https://sumiearai.github.io/Sumie_portafolio/
+site_url: https://sumie-arai.github.io/Sumie_portafolio/
+site_description: Portafolio de proyectos y trabajos de Sumie Arai Erazo 
+site_author: Sumie Arai Erazo
 
 markdown_extensions:
   - pymdownx.highlight:
