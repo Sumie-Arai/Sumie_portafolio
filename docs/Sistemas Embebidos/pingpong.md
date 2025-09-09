@@ -158,4 +158,4 @@ int main() {
 ![Esquemático](imgs/TAREA4.jpeg)
 
 ### Video
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jyWKDoAtEeA" frameborder="0" allowfullscreen></iframe>s
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jyWKDoAtEeA" frameborder="0" allowfullscreen></iframe>
