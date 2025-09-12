@@ -8,7 +8,7 @@
 - **Equipo / Autor(es):** _Juan David García Cortéz y Sumie Arai Erazo_  
 - **Curso / Asignatura:** _Sistemas embebidos 1_  
 - **Fecha:** _7/31/25_  
-- **Descripción breve:** _En esta practica se formuñó un código simple que mande una señal de high para prender 5 LEDs uno por uno de forma que se vea un patrón de rebote de encendido en la tira de LEDs._
+- **Descripción breve:** _En esta practica se formuló un código simple que mande una señal de high para prender 5 LEDs uno por uno de forma que se vea un patrón de rebote de encendido en la tira de LEDs._
 
 
 

@@ -1,32 +1,49 @@
-# 🤖 Tarea 4: Pong
-######Garcia Cortez Juan David · Arai Erazo Sumie ·  Sistemas Embebidos 1  ·  01/09/2025
+# 📚 TAREA 4
 
-## Programar un mini-Pong con 5 LEDs en línea y 2 botones usando interrupciones (ISR) para registrar el “golpe” del jugador exactamente cuando la “pelota” (un LED encendido) llega al extremo de su lado.
+---
 
-## Reglas del juego
-* Pelota: es un único LED encendido que se mueve automáticamente de un extremo al otro (L1→L5→L1…) a un ritmo fijo.
+## 1) Resumen
 
-* Golpe con ISR: cada botón genera una interrupción.
+- **Nombre del proyecto:** _Ping Pong_  
+- **Equipo / Autor(es):** _Juan David García Cortéz y Sumie Arai Erazo_  
+- **Curso / Asignatura:** _Sistemas embebidos 1_  
+- **Fecha:** _09/04/25_  
+- **Descripción breve:** _Se reutiliza el código de barrido de la tarea 2 para convertirla en un juego de Ping Pong que incluye dos botones, uno por jugador, donde para rebotar la pelota se debe de presionar el  boton del jugador en el momento en el que se prenda el link de la ezquina del jugador. Al iniciar el jugador que pique el boton primero es quien "lanza" la pelota yendo la direccion hacia el jugador contrario, al ganar un jugador, durante las siguiente ronda la direccion iniciará hacia este._
 
-* El BTN_L solo cuenta si, en el instante de la ISR, la pelota está en L1.
 
-* El BTN_R solo cuenta si, en el instante de la ISR, la pelota está en L5.
+## 2) Objetivos
 
-* Si coincide, la pelota rebota: invierte su dirección.
+- **General:** _Usar IRQs_
+- **Específicos:**
+  - _Crear una ISR_
+  - _Usar cantidades peligrosas de LEDs TuT_
+  - _Documentar progreso en página de GitHub_
 
-* Si no coincide (la pelota no está en el último LED de ese lado), el botón se ignora.
+## 3) Alcance y Exclusiones
 
-* Fallo y punto: si la pelota alcanza L1 y no hubo golpe válido del lado izquierdo en ese momento, anota el jugador derecho. Análogamente, si alcanza L5 sin golpe válido, anota el jugador izquierdo.
+- **Incluye:** _5 LEDs, 2 botones, un pi pico 2, programa en C SDK._
+- **No incluye:** _Resistencias :b._
 
-* Indicador de punto: al anotar, se parpadea el LED de punto 3 veces del jugador que metió el punto .
+---
 
-* Reinicio tras punto: después del parpadeo, la pelota se reinicia en el centro (L3) y comienza a moverse hacia el jugador que metió el punto.
+## 4) Requisitos
 
-* Inicio del juego: al encender, la pelota inicia en L3 y no se mueve hasta que se presione un boton y debera moverse a la direccion opuesta del boton presionado.
-### Código
-bash
+**Software**
+- _SO compatible (Windows/Linux/macOS)_
+- _Python 3.x / visual studio / raspberry pi pico._
+- _"pico/stdlib.h", "hardware/structs/sio.h"_
+
+**Conocimientos previos**
+- _Programación básica en C_
+- _Electrónica básica_
+- _Git/GitHub_
+
+---
+
+## 5) Código
+
+```bash
 // tarea4.c
-
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
@@ -153,9 +170,15 @@ int main() {
     }
 }
 
+```
 
-### Esquemático
-![Esquemático](imgs/TAREA4.jpeg)
 
-### Video
+## 6) Esquemático
+
+<img src="..\recursos\imgs\pingopong.jpg" alt="esquematico 1" width="420">
+
+
+
+## 7) Video
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jyWKDoAtEeA" frameborder="0" allowfullscreen></iframe>
