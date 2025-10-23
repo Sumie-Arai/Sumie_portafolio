@@ -129,7 +129,7 @@ void procesar_comando(const string& cmd, uint slice, uint chan) {
     string cmd_lower = cmd;
     for (char &c : cmd_lower) c = tolower(c);
 
-    if (cmd_lower == "write" || cmd_lower == "escribir") {
+    if (cmd_lower == "write" || cmd_lower == "escribir"|| cmd_lower == "Escribir") {
         printf("Ingresa valores separados por comas (ej: 0,90,130): ");
         
         string entrada = "";
@@ -204,10 +204,10 @@ void procesar_comando(const string& cmd, uint slice, uint chan) {
         }
         printf("\n");
         
-    } else if (cmd_lower == "clear" || cmd_lower == "borrar") {
+    } else if (cmd_lower == "clear" || cmd_lower == "borrar"||cmd_lower == "Borrar") {
         borrar_lista();
         
-    } else if (cmd_lower == "replace" || cmd_lower == "reemplazar") {
+    } else if (cmd_lower == "replace" || cmd_lower == "reemplazar"|| cmd_lower == "Reemplazar") {
         printf("Ingresa posicion,valor (ej: 1,130): ");
         string entrada = "";
         absolute_time_t timeout = make_timeout_time_ms(10000);
@@ -279,7 +279,7 @@ void procesar_comando(const string& cmd, uint slice, uint chan) {
         
     } else {
         printf("Comando no reconocido: '%s'\n", cmd.c_str());
-        printf("Escribe 'help' para ver comandos disponibles\n");
+         printf("Escribe 'help' para ver comandos disponibles\n");
     }
 }
 
@@ -296,9 +296,7 @@ int main() {
     printf("Sistema inicializado. Esperando comandos...\n");
     printf("> ");
 
-    
 
-    // Configurar PWM para servo
     // Configurar PWM para servo
     gpio_set_function(SERVO_PIN, GPIO_FUNC_PWM);
     uint slice = pwm_gpio_to_slice_num(SERVO_PIN);
