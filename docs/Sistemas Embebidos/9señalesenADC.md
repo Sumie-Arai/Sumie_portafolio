@@ -152,7 +152,7 @@ _Nota: El led será el fotoresistor ya que no existe el componente en wokwi
 
 ## 7) Videos
 
-<iframe width="560" height="315" src="https://youtube.com/shorts/zImjOQUQME8?si=KFIuV3euc9Le2WlD" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/1XyUdpuH5Gg?si=brV9TnuOEmAYeSBx" frameborder="0" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=1XyUdpuH5Gg" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtube.com/shorts/zImjOQUQME8?si=k_bL-xgD709VH4yd" frameborder="0" allowfullscreen></iframe>
 
