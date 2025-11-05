@@ -13,17 +13,15 @@
 
 ## 2) Objetivos
 
-- **General:** _Usar IRQs_
+- **General:** _Utilizar diferentes formas de calcular frecuencia_
 - **Específicos:**
-  - _Crear una ISR_
-  - _Usar cantidades peligrosas de LEDs TuT_
-  - _Documentar progreso en página de GitHub_
+  - _Observar el error en la frecuenciaa con timer del controlador_
+
 
 ## 3) Alcance y Exclusiones
 
-- **Incluye:** _5 LEDs, 2 botones, un pi pico 2, programa en C SDK._
-- **No incluye:** _Resistencias :b._
-
+- **Incluye:** _Osciloscopio, capacitor de 100mf, resistencias._
+- **No incluye:** 
 ---
 
 ## 4) Requisitos
@@ -42,7 +40,7 @@
 
 ## 5) Código
 
-```bash
+
 // Blink con timer (SDK alto nivel): cambia BLINK_MS para ajustar
 #include "pico/stdlib.h"
 #include "pico/time.h"

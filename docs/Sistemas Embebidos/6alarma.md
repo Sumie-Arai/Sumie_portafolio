@@ -167,10 +167,199 @@ int main() {
 
 ## 6) Esquemático
 
-<img src="..\recursos\imgs\pingopong.jpg" alt="esquematico 1" width="420">
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAG3Hx6Y81Q/W8GIVTmJUTdkJe0tVRdEOg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAG3Hx6Y81Q&#x2F;W8GIVTmJUTdkJe0tVRdEOg&#x2F;view?utm_content=DAG3Hx6Y81Q&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Diseño</a> de Sumie Arai
 
 
 
 ## 7) Video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/jyWKDoAtEeA" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtu.be/ffViBdU1jA0?si=mT1eZbNXa4NLZc6f" frameborder="0" allowfullscreen></iframe>
+
+## 8) Código ping pong
+
+```bash
+
+#include "pico/stdlib.h"
+#include "hardware/gpio.h"
+#include "hardware/irq.h"
+#include "hardware/structs/timer.h"
+
+// Pines
+#define P1 4
+#define P2 5
+#define WIN1 6
+#define LED1 7
+#define LED2 8
+#define LED3 9
+#define LED4 10
+#define LED5 11
+#define WIN2 12
+#define BTN_SLOW 14
+#define BTN_FAST 15
+
+#define ALARM0_NUM 0
+#define ALARM0_IRQ timer_hw->intr
+
+// LEDs
+const uint LEDS[] = {WIN1, LED1, LED2, LED3, LED4, LED5, WIN2};
+
+// Estado del juego
+volatile int posicion = LED3;
+volatile int direccion = 1;
+volatile bool flag_p1 = false;
+volatile bool flag_p2 = false;
+volatile bool flag_slow = false;
+volatile bool flag_fast = false;
+volatile bool juego_activo = true;
+
+// Intervalo de movimiento en µs
+volatile uint32_t intervalo_us = 200000;
+volatile uint32_t next_alarm_us = 0;
+
+// Parpadeo de LED ganador
+void parpadear_led(uint led) {
+    for (int i = 0; i < 3; i++) {
+        gpio_put(led, 1);
+        sleep_ms(300);
+        gpio_put(led, 0);
+        sleep_ms(300);
+    }
+}
+
+// Interrupciones GPIO
+void gpio_callback(uint gpio, uint32_t events) {
+    if (events & GPIO_IRQ_EDGE_RISE) {
+        if (gpio == P1) flag_p1 = true;
+        else if (gpio == P2) flag_p2 = true;
+        else if (gpio == BTN_SLOW) flag_slow = true;
+        else if (gpio == BTN_FAST) flag_fast = true;
+    }
+}
+
+// Interrupción de ALARM0
+void on_alarm0_irq() {
+    // Limpiar flag
+    hw_clear_bits(&timer_hw->intr, 1u << ALARM0_NUM);
+
+    if (!juego_activo) return;
+
+    // Apagar todos los LEDs
+    for (int i = 0; i < 7; i++) gpio_put(LEDS[i], 0);
+
+    // Encender LED actual
+    gpio_put(posicion, 1);
+
+    // Cambiar dirección solo si el LED está en el extremo
+    if (posicion == LED1) {
+        if (flag_p1) {
+            direccion = 1;
+            flag_p1 = false;
+        }
+    } else if (posicion == LED5) {
+        if (flag_p2) {
+            direccion = -1;
+            flag_p2 = false;
+        }
+    }
+
+    // Ajustar velocidad
+    if (flag_slow) {
+        intervalo_us += 50000;
+        if (intervalo_us > 1000000) intervalo_us = 1000000;
+        flag_slow = false;
+    }
+    if (flag_fast) {
+        if (intervalo_us > 50000) intervalo_us -= 50000;
+        flag_fast = false;
+    }
+
+    // Verificar victoria
+    if (posicion == WIN1) {
+        parpadear_led(WIN2);
+        juego_activo = false;
+        direccion = 1;
+        return;
+    } else if (posicion == WIN2) {
+        parpadear_led(WIN1);
+        juego_activo = false;
+        direccion = -1;
+        return;
+    }
+
+    // Mover LED
+    posicion += direccion;
+
+    // Reprogramar alarma
+    next_alarm_us += intervalo_us;
+    timer_hw->alarm[ALARM0_NUM] = next_alarm_us;
+}
+
+int main() {
+    stdio_init_all();
+
+    // Inicializar LEDs
+    for (int i = 0; i < 7; i++) {
+        gpio_init(LEDS[i]);
+        gpio_set_dir(LEDS[i], GPIO_OUT);
+        gpio_put(LEDS[i], 0);
+    }
+
+    // Inicializar botones
+    gpio_init(P1); gpio_set_dir(P1, GPIO_IN); gpio_pull_up(P1);
+    gpio_init(P2); gpio_set_dir(P2, GPIO_IN); gpio_pull_up(P2);
+    gpio_init(BTN_SLOW); gpio_set_dir(BTN_SLOW, GPIO_IN); gpio_pull_up(BTN_SLOW);
+    gpio_init(BTN_FAST); gpio_set_dir(BTN_FAST, GPIO_IN); gpio_pull_up(BTN_FAST);
+
+    // Configurar interrupciones GPIO
+    gpio_set_irq_enabled_with_callback(P1, GPIO_IRQ_EDGE_RISE, true, &gpio_callback);
+    gpio_set_irq_enabled(P2, GPIO_IRQ_EDGE_RISE, true);
+    gpio_set_irq_enabled(BTN_SLOW, GPIO_IRQ_EDGE_RISE, true);
+    gpio_set_irq_enabled(BTN_FAST, GPIO_IRQ_EDGE_RISE, true);
+
+    // Configurar TIMER
+    timer_hw->source = 0u;
+    irq_set_exclusive_handler(timer_hardware_alarm_get_irq_num(timer_hw, ALARM0_NUM), on_alarm0_irq);
+    irq_set_enabled(timer_hardware_alarm_get_irq_num(timer_hw, ALARM0_NUM), true);
+    hw_set_bits(&timer_hw->inte, 1u << ALARM0_NUM);
+
+    while (true) {
+        // Reiniciar estado
+        posicion = LED3;
+        juego_activo = true;
+        intervalo_us = 200000;
+
+        // Programar primera alarma
+        next_alarm_us = timer_hw->timerawl + intervalo_us;
+        timer_hw->alarm[ALARM0_NUM] = next_alarm_us;
+
+        // Esperar fin del juego
+        while (juego_activo) {
+            tight_loop_contents();
+        }
+
+        sleep_ms(1000); // Espera antes de reiniciar
+    }
+}
+```
+
+## 9) Esquematico
+
+<div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAG3H1-PZ7g/L6HkWozM7FZsuXAZDdQLVA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAG3H1-PZ7g&#x2F;L6HkWozM7FZsuXAZDdQLVA&#x2F;view?utm_content=DAG3H1-PZ7g&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Diseño</a> de Sumie Arai
+
+## 10)video
+
+<iframe width="560" height="315" src="https://youtu.be/jyWKDoAtEeA?si=w8iap3eO7n24C383" frameborder="0" allowfullscreen></iframe>
