@@ -1,5 +1,3 @@
-# HOLAOLIVER
-
 # Session 3 - Lab Homework
  
 ## 1) Exercise Goals
