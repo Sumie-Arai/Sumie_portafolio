@@ -159,5 +159,5 @@ esp_err_t mqtt_app_start(const char *broker_uri) {
 ## 7 files and media
 * This is the video of it working.
 
-<iframe width="560" height="315" src="https://youtube.com/shorts/1R7rC5hZ4Ns?si=GTcgB341NPUGWonr" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://youtube.com/shorts/1R7rC5hZ4Ns?si=6V19XQb9lEDr_9jP" frameborder="0" allowfullscreen></iframe>
 
